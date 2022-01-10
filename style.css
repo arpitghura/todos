@@ -1,12 +1,8 @@
 .card{
     margin: 0 2vw 1.5vw 0;
     height: min-content;
-    max-width: fit-content;
 }
-#clearAll{
-    display: none;
-}
-@media only screen and (max-width: 480px) {
+/* @media only screen and (max-width: 480px) {
     .card{
         width: 100%;
     }
@@ -22,4 +18,4 @@
     .card{
         width: 27vw;
     }
-}
+} */

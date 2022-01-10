@@ -6,16 +6,18 @@ A Notes Taking App Build with
 3. BootStrap
 4. JavaScript
 
-Access From : [https://arpitghura.github.io/todos](https://arpitghura.github.io/todos)
+Access From : [https://www.arpitghura.me/todos](https://www.arpitghura.me/todos)
 
 <br/>
 
-<img src="AppScreenShot.png" alt="todos App screenshot">
+<img src="AppScreenshot.png" alt="todos App screenshot">
 
 ---
 ## Features
 <li>Add and Manage all your TODOs</li>
 <li>Saves locally all our TODOs in your browser</li>
+<li>Validation of Title and Description</li>
+<li>Mark as Done or Undone any TODO</li>
 <li>Delete a particular TODO</li>
 <li>Edit any particular TODO*</li>
 
