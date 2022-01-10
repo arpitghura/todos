@@ -135,7 +135,7 @@ function DoneUpdate() {
     }
     let DoneContent = "";
     JsonDoneItemsArray.forEach((element, index) => {
-        DoneContent += `<div class="card col-3">
+        DoneContent += `<div class="card col-sm-5 col-md-3">
         <span class="badge bg-success card-header" id="done">Done</span> 
         <div class="card-body bg-dark text-light">
           <h5 class="card-title">${element[0][0]}</h5>

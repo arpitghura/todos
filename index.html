@@ -19,7 +19,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">TODOs App</a>
+        <a class="navbar-brand">TODOs App</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -43,7 +43,7 @@
         </div>
       </div>
     </nav>
-    <div class="container p-2 col-md-10">
+    <div class="container p-2 col-md-12">
       <div class="mb-3">
         <label for="title" class="form-label">TODO Title</label>
         <input type="text" class="form-control" id="title" />
@@ -56,8 +56,10 @@
         <button type="submit" class="btn btn-primary my-1" id="add">Submit</button>
         <button type="submit" class="btn btn-danger my-1" id="clearAll">Clear All</button>
       </div>
-
       <hr />
+    </div>
+
+    <div class="container">
       <!-- --- Card to view the TODOs ---  -->
       <div id="todos" class="d-flex flex-wrap">
       </div>
@@ -65,8 +67,9 @@
       <h3 id="doneLabel">Done Todos</h3>
       <div id="DoneTodos" class="d-flex flex-wrap">
       </div>
-
     </div>
+
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
