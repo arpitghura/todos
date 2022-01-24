@@ -2,17 +2,23 @@
 function getAndAddData() {
     tit = document.getElementById("title").value;
     desc = document.getElementById("description").value;
-    if (localStorage.getItem("JsonItems") == null) {
-        JsonItemsArray = [];
-        JsonItemsArray.push([tit, desc]);
-        localStorage.setItem("JsonItems", JSON.stringify(JsonItemsArray));
-    }
-    else {
-        if (Validate(tit, desc)) {
+    if (add.innerText == "Update") {
+        console.log("update method of submit");
+        editUpdate(tit, desc);
+    } else {
+        console.log("non- update method of submit");
+        if (localStorage.getItem("JsonItems") == null) {
+            JsonItemsArray = [];
             JsonItemsArray.push([tit, desc]);
             localStorage.setItem("JsonItems", JSON.stringify(JsonItemsArray));
-            document.getElementById("title").value = "";
-            document.getElementById("description").value = "";
+        }
+        else {
+            if (Validate(tit, desc)) {
+                JsonItemsArray.push([tit, desc]);
+                localStorage.setItem("JsonItems", JSON.stringify(JsonItemsArray));
+                document.getElementById("title").value = "";
+                document.getElementById("description").value = "";
+            }
         }
     }
     update();
@@ -54,12 +60,18 @@ function update() {
     }
     let content = "";
     JsonItemsArray.forEach((element, index) => {
-        content += `<div class="card col-sm-5 col-md-4 col-lg-3">
+        content += `<div class="card ">
         <div class="card-body">
           <h5 class="card-title">${element[0]}</h5>
           <p class="card-text">${element[1]}</p>
-          <button class="btn btn-success btn-sm my-1" onclick="MarkedAsDone(${index})">Mark as Done</button>
-          <button class="btn btn-danger btn-sm my-1" onclick="deleted(${index})">Delete</button>
+            <div class="dropdown">
+                <img src="three-dots-more-indicator_icon-icons.com_72518.png" width="15px" id="MoreInTodo" class="pointer img-top-side" data-bs-toggle="dropdown" aria-expanded="true">
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="MoreInTodo">
+                    <li><button class="dropdown-item" type="button" onclick="MarkedAsDone(${index})">Mark as Done</button></li>
+                    <li><button class="dropdown-item" type="button" onclick="editit(${index})">Edit</button></li>
+                    <li><button class="dropdown-item" type="button" onclick="deleted(${index})">Delete</button></li>
+                    </ul>
+            </div>
         </div>
         </div>`
     });
@@ -136,17 +148,50 @@ function DoneUpdate() {
     let DoneContent = "";
     JsonDoneItemsArray.forEach((element, index) => {
         DoneContent += `<div class="card col-sm-5 col-md-3">
-        <span class="badge bg-success card-header" id="done">Done</span> 
-        <div class="card-body bg-dark text-light">
-          <h5 class="card-title">${element[0][0]}</h5>
-          <p class="card-text">${element[0][1]}</p>
-          <button class="btn btn-warning btn-sm my-1" onclick="undoneit(${index})">Mark as Undone</button>
-          <button class="btn btn-danger btn-sm my-1" onclick="DoneDeleted(${index})">Delete</button>
-        </div>
+            <span class="badge bg-success card-header" id="done">Done</span> 
+            <div class="card-body bg-dark text-light">
+            <h5 class="card-title">${element[0][0]}</h5>
+            <p class="card-text">${element[0][1]}</p>
+                <div class="dropdown done-dropdown">
+                    <img src="three-dots-more-indicator_icon-icons.com_72518.png" width="15px" id="MoreInTodo" class="pointer img-top-side invert" data-bs-toggle="dropdown" aria-expanded="false">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="MoreInTodo">
+                        <li><button class="dropdown-item" type="button" onclick="undoneit(${index})">Mark as Undone</button></li>
+                        <li><button class="dropdown-item" type="button" onclick="editit(${index})">Edit</button></li>
+                        <li><button class="dropdown-item" type="button" onclick="DoneDeleted(${index})">Delete</button></li>
+                    </ul>
+                </div>
+            </div>
         </div>`
     });
     addDoneTodo = document.getElementById("DoneTodos");
     addDoneTodo.innerHTML = DoneContent;
+}
+
+//Edit Items
+let itemIndexEdit;
+function editit(itemIndex) {
+    labelTitle = document.getElementById("labelTitle");
+    labelDesc = document.getElementById("labelDesc");
+    submitBtn = document.getElementById("add");
+    tit = document.getElementById("title");
+    desc = document.getElementById("description");
+
+    labelTitle.innerText = "Edit Title";
+    labelDesc.innerText = "Edit Description";
+    submitBtn.innerText = "Update";
+    itemIndexEdit = itemIndex;
+
+    JsonItemsArrayStr = localStorage.getItem("JsonItems");
+    JsonItemsArr = JSON.parse(JsonItemsArrStr);
+    let editEle = JsonItemsArr.splice(itemIndex, 1);
+    console.log(editEle);
+    tit.value = editEle[0][0];
+    desc.innerText = editEle[0][1];
+
+}
+
+editUpdate = (tit, desc) => {
+    console.log(tit, desc);
 }
 
 //Undone it
